@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Swashbuckle.Swagger.Model;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace Net.Core.Api
 {
@@ -37,6 +38,8 @@ namespace Net.Core.Api
         {
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
+
+            var xmlPath = GetXmlCommentsPath();
 
             services.AddMvc();
 
@@ -69,6 +72,12 @@ namespace Net.Core.Api
 
             app.UseSwagger();
             app.UseSwaggerUi();
+        }
+
+        private string GetXmlCommentsPath()
+        {
+            var app = PlatformServices.Default.Application;
+            return System.IO.Path.Combine(app.ApplicationBasePath, "WebAPIWithSwagger.xml");
         }
     }
 }

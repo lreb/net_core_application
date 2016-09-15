@@ -36,6 +36,11 @@ namespace Net.Core.Api.Controllers
         }
 
         // DELETE api/values/5
+        /// <summary>
+        /// Delete API Value
+        /// </summary>
+        /// <remarks>This API will delete the values.</remarks>
+        /// <param name="id"></param>
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
