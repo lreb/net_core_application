@@ -1,12 +1,12 @@
---temp-output:C:\Users\Luis Espinoza\documents\visual studio 2015\Projects\Net.Core\Net.Core.Api\obj\Debug\netcoreapp1.0\
---out:C:\Users\Luis Espinoza\documents\visual studio 2015\Projects\Net.Core\Net.Core.Api\bin\Debug\netcoreapp1.0\Net.Core.Api.dll
---define:DEBUG
+--temp-output:C:\Users\Luis Espinoza\documents\visual studio 2015\Projects\Net.Core\Net.Core.Api\obj\Release\netcoreapp1.0\
+--out:C:\Users\Luis Espinoza\documents\visual studio 2015\Projects\Net.Core\Net.Core.Api\bin\Release\netcoreapp1.0\Net.Core.Api.dll
+--define:RELEASE
 --define:TRACE
 --define:NETCOREAPP1_0
 --suppress-warning:CS1701
 --suppress-warning:CS1702
 --suppress-warning:CS1705
---optimize:False
+--optimize:True
 --emit-entry-point:True
 --generate-xml-documentation:True
 --output-name:Net.Core.Api
@@ -184,7 +184,7 @@
 --reference:C:\Users\Luis Espinoza\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll
 --reference:C:\Users\Luis Espinoza\.nuget\packages\System.Xml.XmlSerializer\4.0.11\ref\netstandard1.3\System.Xml.XmlSerializer.dll
 --reference:C:\Users\Luis Espinoza\.nuget\packages\System.Xml.XPath\4.0.1\ref\netstandard1.3\System.Xml.XPath.dll
---resource:"C:\Users\Luis Espinoza\documents\visual studio 2015\Projects\Net.Core\Net.Core.Api\obj\Debug\netcoreapp1.0\Net.Core.Apidotnet-compile.deps.json",Net.Core.Api.deps.json
+--resource:"C:\Users\Luis Espinoza\documents\visual studio 2015\Projects\Net.Core\Net.Core.Api\obj\Release\netcoreapp1.0\Net.Core.Apidotnet-compile.deps.json",Net.Core.Api.deps.json
 C:\Users\Luis Espinoza\documents\visual studio 2015\Projects\Net.Core\Net.Core.Api\Program.cs
 C:\Users\Luis Espinoza\documents\visual studio 2015\Projects\Net.Core\Net.Core.Api\Startup.cs
 C:\Users\Luis Espinoza\documents\visual studio 2015\Projects\Net.Core\Net.Core.Api\Controllers\ValuesController.cs
