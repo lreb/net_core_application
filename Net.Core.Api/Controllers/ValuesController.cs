@@ -7,16 +7,32 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Net.Core.Api.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public enum eValueType
         {
+            /// <summary>
+            /// 
+            /// </summary>
             Number,
+            /// <summary>
+            /// 
+            /// </summary>
             Text
         }
 
         // GET api/values
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IEnumerable<Value> Get()
         {
@@ -39,6 +55,11 @@ namespace Net.Core.Api.Controllers
         }
 
         // POST api/values
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         [HttpPost]
         [Produces(typeof(Value))]
         public IActionResult Post([FromBody]Value value)
@@ -52,6 +73,11 @@ namespace Net.Core.Api.Controllers
         }
 
         // PUT api/values/5
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="value"></param>
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
@@ -68,9 +94,18 @@ namespace Net.Core.Api.Controllers
         {
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public class Value
         {
+            /// <summary>
+            /// 
+            /// </summary>
             public int Id { get; set; }
+            /// <summary>
+            /// 
+            /// </summary>
             [Required]
             public string Text { get; set; }
         }
