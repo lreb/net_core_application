@@ -9,6 +9,12 @@ namespace Net.Core.Api.Controllers
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        public enum eValueType
+        {
+            Number,
+            Text
+        }
+
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
@@ -17,8 +23,14 @@ namespace Net.Core.Api.Controllers
         }
 
         // GET api/values/5
+        /// <summary>
+        /// Get API values by ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="type">Type of Value</param>
+        /// <returns></returns>
         [HttpGet("{id}")]
-        public string Get(int id)
+        public string Get(int id, eValueType type)
         {
             return "value";
         }

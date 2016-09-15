@@ -54,6 +54,8 @@ namespace Net.Core.Api
                     TermsOfService = "None",
                     Contact = new Contact() { Name = "Talking Dotnet", Email = "respinozabarboza@gmail.com.com", Url = "www.facware.com" }
                 });
+                options.IncludeXmlComments(xmlPath);
+                options.DescribeAllEnumsAsStrings();
             });
 
         }
