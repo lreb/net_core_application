@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace Net.Core.Api.Controllers
 {
@@ -17,9 +18,10 @@ namespace Net.Core.Api.Controllers
 
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Value> Get()
         {
-            return new string[] { "value1", "value2" };
+            //return new string[] { "value1", "value2" };
+            return new Value[] { new Value { Id = 1, Text = "T1" }, new Value { Id = 2, Text = "T2" } };
         }
 
         // GET api/values/5
@@ -29,16 +31,24 @@ namespace Net.Core.Api.Controllers
         /// <param name="id"></param>
         /// <param name="type">Type of Value</param>
         /// <returns></returns>
-        [HttpGet("{id}")]
-        public string Get(int id, eValueType type)
+        [HttpGet("{id:int}")]
+        public Value Get(int id, eValueType type)
         {
-            return "value";
+            //return "value";
+            return new Value { Id = id, Text = "Value" };
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        [Produces(typeof(Value))]
+        public IActionResult Post([FromBody]Value value)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            //redirect after create
+            return CreatedAtAction("Get", new { id = value.Id }, value);
         }
 
         // PUT api/values/5
@@ -56,6 +66,13 @@ namespace Net.Core.Api.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+
+        public class Value
+        {
+            public int Id { get; set; }
+            [Required]
+            public string Text { get; set; }
         }
     }
 }

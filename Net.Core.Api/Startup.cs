@@ -41,7 +41,7 @@ namespace Net.Core.Api
 
             var xmlPath = GetXmlCommentsPath();
 
-            services.AddMvc();
+            services.AddMvc().AddXmlSerializerFormatters(); ;
 
             services.AddSwaggerGen();
             services.ConfigureSwaggerGen(options =>
@@ -54,7 +54,6 @@ namespace Net.Core.Api
                     TermsOfService = "None",
                     Contact = new Contact() { Name = "Talking Dotnet", Email = "respinozabarboza@gmail.com.com", Url = "www.facware.com" }
                 });
-                options.IncludeXmlComments(xmlPath);
                 options.DescribeAllEnumsAsStrings();
             });
 

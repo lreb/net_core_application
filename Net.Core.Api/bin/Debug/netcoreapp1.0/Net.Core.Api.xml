@@ -4,7 +4,7 @@
         <name>Net.Core.Api</name>
     </assembly>
     <members>
-        <member name="M:Net.Core.Api.Controllers.ValuesController.Get(System.Int32)">
+        <member name="M:Net.Core.Api.Controllers.ValuesController.Get(System.Int32,Net.Core.Api.Controllers.ValuesController.eValueType)">
             <summary>
             Get API values by ID
             </summary>
