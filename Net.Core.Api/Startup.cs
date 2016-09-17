@@ -9,6 +9,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Swashbuckle.Swagger.Model;
 using Microsoft.Extensions.PlatformAbstractions;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using System.Text;
+using Net.Core.Api.Options;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Net.Core.Api
 {
@@ -17,6 +22,9 @@ namespace Net.Core.Api
     /// </summary>
     public class Startup
     {
+        private const string SecretKey = "needtogetthisfromenvironment";
+        private readonly SymmetricSecurityKey _signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SecretKey));
+
         /// <summary>
         /// 
         /// </summary>
@@ -55,11 +63,20 @@ namespace Net.Core.Api
         {
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
+            // Add framework services.
+            services.AddOptions();
 
             // include XML comments to swagger
             var xmlPath = GetXmlCommentsPath();
 
-            services.AddMvc().AddXmlSerializerFormatters(); ;
+            // Make authentication compulsory across the board (i.e. shut
+            // down EVERYTHING unless explicitly opened up).
+            services.AddMvc(config => {
+                var policy = new AuthorizationPolicyBuilder()
+                .RequireAuthenticatedUser()
+                .Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            }).AddXmlSerializerFormatters(); ;
 
             // add swagger service to middleware
             services.AddSwaggerGen();
@@ -78,6 +95,17 @@ namespace Net.Core.Api
                 //options.IncludeXmlComments(xmlPath);
                 // added to code to display enum values to swagger
                 //options.DescribeAllEnumsAsStrings();
+            });
+
+            // Get options from app settings
+            var jwtAppSettingOptions = Configuration.GetSection(nameof(JwtIssuerOptions));
+
+            // Configure JwtIssuerOptions
+            services.Configure<JwtIssuerOptions>(options =>
+            {
+                options.Issuer = jwtAppSettingOptions[nameof(JwtIssuerOptions.Issuer)];
+                options.Audience = jwtAppSettingOptions[nameof(JwtIssuerOptions.Audience)];
+                options.SigningCredentials = new SigningCredentials(_signingKey, SecurityAlgorithms.HmacSha256);
             });
 
         }
