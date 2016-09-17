@@ -17,6 +17,9 @@ using System.Security.Principal;
 
 namespace Net.Core.Api.Controllers
 {
+    /// <summary>
+    /// Authentication controller
+    /// </summary>
     [Route("api/[controller]")]
     public class JwtController : Controller
     {
@@ -24,6 +27,11 @@ namespace Net.Core.Api.Controllers
         private readonly ILogger _logger;
         private readonly JsonSerializerSettings _serializerSettings;
 
+        /// <summary>
+        /// Contructor
+        /// </summary>
+        /// <param name="jwtOptions"></param>
+        /// <param name="loggerFactory"></param>
         public JwtController(IOptions<JwtIssuerOptions> jwtOptions, ILoggerFactory loggerFactory)
         {
             _jwtOptions = jwtOptions.Value;
@@ -37,6 +45,11 @@ namespace Net.Core.Api.Controllers
             };
         }
 
+        /// <summary>
+        /// Receive data information for authentication
+        /// </summary>
+        /// <param name="applicationUser"></param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Get([FromForm] ApplicationUser applicationUser)
