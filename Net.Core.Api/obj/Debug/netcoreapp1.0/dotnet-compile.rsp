@@ -17,6 +17,8 @@
 --reference:C:\Users\Luis Espinoza\.nuget\packages\Microsoft.ApplicationInsights\2.1.0\lib\dotnet5.4\Microsoft.ApplicationInsights.dll
 --reference:C:\Users\Luis Espinoza\.nuget\packages\Microsoft.ApplicationInsights.AspNetCore\1.0.0\lib\netstandard1.6\Microsoft.ApplicationInsights.AspNetCore.dll
 --reference:C:\Users\Luis Espinoza\.nuget\packages\Microsoft.AspNetCore.Antiforgery\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.Antiforgery.dll
+--reference:C:\Users\Luis Espinoza\.nuget\packages\Microsoft.AspNetCore.Authentication\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.Authentication.dll
+--reference:C:\Users\Luis Espinoza\.nuget\packages\Microsoft.AspNetCore.Authentication.JwtBearer\1.0.0\lib\netstandard1.4\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 --reference:C:\Users\Luis Espinoza\.nuget\packages\Microsoft.AspNetCore.Authorization\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.Authorization.dll
 --reference:C:\Users\Luis Espinoza\.nuget\packages\Microsoft.AspNetCore.Cors\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.Cors.dll
 --reference:C:\Users\Luis Espinoza\.nuget\packages\Microsoft.AspNetCore.Cryptography.Internal\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.Cryptography.Internal.dll
@@ -90,6 +92,8 @@
 --reference:C:\Users\Luis Espinoza\.nuget\packages\Microsoft.Extensions.Primitives\1.0.0\lib\netstandard1.0\Microsoft.Extensions.Primitives.dll
 --reference:C:\Users\Luis Espinoza\.nuget\packages\Microsoft.Extensions.WebEncoders\1.0.0\lib\netstandard1.0\Microsoft.Extensions.WebEncoders.dll
 --reference:C:\Users\Luis Espinoza\.nuget\packages\Microsoft.IdentityModel.Logging\1.0.0\lib\netstandard1.4\Microsoft.IdentityModel.Logging.dll
+--reference:C:\Users\Luis Espinoza\.nuget\packages\Microsoft.IdentityModel.Protocols\2.0.0\lib\netstandard1.4\Microsoft.IdentityModel.Protocols.dll
+--reference:C:\Users\Luis Espinoza\.nuget\packages\Microsoft.IdentityModel.Protocols.OpenIdConnect\2.0.0\lib\netstandard1.4\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 --reference:C:\Users\Luis Espinoza\.nuget\packages\Microsoft.IdentityModel.Tokens\5.0.0\lib\netstandard1.4\Microsoft.IdentityModel.Tokens.dll
 --reference:C:\Users\Luis Espinoza\.nuget\packages\Microsoft.Net.Http.Headers\1.0.0\lib\netstandard1.1\Microsoft.Net.Http.Headers.dll
 --reference:C:\Users\Luis Espinoza\.nuget\packages\Microsoft.VisualBasic\10.0.1\ref\netstandard1.1\Microsoft.VisualBasic.dll
@@ -105,6 +109,7 @@
 --reference:C:\Users\Luis Espinoza\.nuget\packages\System.Collections.Concurrent\4.0.12\ref\netstandard1.3\System.Collections.Concurrent.dll
 --reference:C:\Users\Luis Espinoza\.nuget\packages\System.Collections.Immutable\1.2.0\lib\netstandard1.0\System.Collections.Immutable.dll
 --reference:C:\Users\Luis Espinoza\.nuget\packages\System.Collections.NonGeneric\4.0.1\ref\netstandard1.3\System.Collections.NonGeneric.dll
+--reference:C:\Users\Luis Espinoza\.nuget\packages\System.Collections.Specialized\4.0.1\ref\netstandard1.3\System.Collections.Specialized.dll
 --reference:C:\Users\Luis Espinoza\.nuget\packages\System.ComponentModel\4.0.1\ref\netstandard1.0\System.ComponentModel.dll
 --reference:C:\Users\Luis Espinoza\.nuget\packages\System.ComponentModel.Annotations\4.1.0\ref\netstandard1.4\System.ComponentModel.Annotations.dll
 --reference:C:\Users\Luis Espinoza\.nuget\packages\System.ComponentModel.Primitives\4.1.0\ref\netstandard1.0\System.ComponentModel.Primitives.dll
@@ -192,6 +197,7 @@
 --resource:"C:\Users\Luis Espinoza\documents\visual studio 2015\Projects\Net.Core\Net.Core.Api\obj\Debug\netcoreapp1.0\Net.Core.Apidotnet-compile.deps.json",Net.Core.Api.deps.json
 C:\Users\Luis Espinoza\documents\visual studio 2015\Projects\Net.Core\Net.Core.Api\Program.cs
 C:\Users\Luis Espinoza\documents\visual studio 2015\Projects\Net.Core\Net.Core.Api\Startup.cs
+C:\Users\Luis Espinoza\documents\visual studio 2015\Projects\Net.Core\Net.Core.Api\Controllers\JwtAuthTestController.cs
 C:\Users\Luis Espinoza\documents\visual studio 2015\Projects\Net.Core\Net.Core.Api\Controllers\JwtController.cs
 C:\Users\Luis Espinoza\documents\visual studio 2015\Projects\Net.Core\Net.Core.Api\Controllers\ValuesController.cs
 C:\Users\Luis Espinoza\documents\visual studio 2015\Projects\Net.Core\Net.Core.Api\Models\ApplicationUser.cs

@@ -78,6 +78,12 @@ namespace Net.Core.Api
                 config.Filters.Add(new AuthorizeFilter(policy));
             }).AddXmlSerializerFormatters(); ;
 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("DisneyUser",
+                                  policy => policy.RequireClaim("DisneyCharacter", "IAmMickey"));
+            });
+
             // add swagger service to middleware
             services.AddSwaggerGen();
             // swagger description
@@ -127,6 +133,31 @@ namespace Net.Core.Api
             app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseMvc();
+
+            var jwtAppSettingOptions = Configuration.GetSection(nameof(JwtIssuerOptions));
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidIssuer = jwtAppSettingOptions[nameof(JwtIssuerOptions.Issuer)],
+
+                ValidateAudience = true,
+                ValidAudience = jwtAppSettingOptions[nameof(JwtIssuerOptions.Audience)],
+
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = _signingKey,
+
+                RequireExpirationTime = true,
+                ValidateLifetime = true,
+
+                ClockSkew = TimeSpan.Zero
+            };
+
+            app.UseJwtBearerAuthentication(new JwtBearerOptions
+            {
+                AutomaticAuthenticate = true,
+                AutomaticChallenge = true,
+                TokenValidationParameters = tokenValidationParameters
+            });
 
             // use swagger framework
             app.UseSwagger();

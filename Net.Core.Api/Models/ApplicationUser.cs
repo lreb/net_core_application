@@ -5,9 +5,18 @@ using System.Threading.Tasks;
 
 namespace Net.Core.Api.Models
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ApplicationUser
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public string UserName { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string Password { get; set; }
     }
 }

@@ -53,6 +53,25 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Net.Core.Api.Controllers.JwtController">
+            <summary>
+            Authentication controller
+            </summary>
+        </member>
+        <member name="M:Net.Core.Api.Controllers.JwtController.#ctor(Microsoft.Extensions.Options.IOptions{Net.Core.Api.Options.JwtIssuerOptions},Microsoft.Extensions.Logging.ILoggerFactory)">
+            <summary>
+            Contructor
+            </summary>
+            <param name="jwtOptions"></param>
+            <param name="loggerFactory"></param>
+        </member>
+        <member name="M:Net.Core.Api.Controllers.JwtController.Get(Net.Core.Api.Models.ApplicationUser)">
+            <summary>
+            Receive data information for authentication
+            </summary>
+            <param name="applicationUser"></param>
+            <returns></returns>
+        </member>
         <member name="M:Net.Core.Api.Controllers.JwtController.ToUnixEpochDate(System.DateTime)">
             <returns>Date converted to seconds since Unix epoch (Jan 1, 1970, midnight UTC).</returns>
         </member>
@@ -131,6 +150,26 @@
         <member name="P:Net.Core.Api.Controllers.ValuesController.Value.Text">
             <summary>
             
+            </summary>
+        </member>
+        <member name="T:Net.Core.Api.Models.ApplicationUser">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Net.Core.Api.Models.ApplicationUser.UserName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Net.Core.Api.Models.ApplicationUser.Password">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Net.Core.Api.Options.JwtIssuerOptions">
+            <summary>
+            JWT properties
             </summary>
         </member>
         <member name="P:Net.Core.Api.Options.JwtIssuerOptions.Issuer">
