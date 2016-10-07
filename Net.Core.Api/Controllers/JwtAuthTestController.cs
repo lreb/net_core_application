@@ -10,11 +10,17 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Net.Core.Api.Controllers
 {
+    /// <summary>
+    /// for test token
+    /// </summary>
     [Route("api/test")]
     public class JwtAuthTestController : Controller
     {
         private readonly JsonSerializerSettings _serializerSettings;
 
+        /// <summary>
+        /// serailize request
+        /// </summary>
         public JwtAuthTestController()
         {
             _serializerSettings = new JsonSerializerSettings
@@ -23,6 +29,10 @@ namespace Net.Core.Api.Controllers
             };
         }
 
+        /// <summary>
+        /// test token
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Authorize(Policy = "DisneyUser")]
         public IActionResult Get()

@@ -53,6 +53,22 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Net.Core.Api.Controllers.JwtAuthTestController">
+            <summary>
+            for test token
+            </summary>
+        </member>
+        <member name="M:Net.Core.Api.Controllers.JwtAuthTestController.#ctor">
+            <summary>
+            serailize request
+            </summary>
+        </member>
+        <member name="M:Net.Core.Api.Controllers.JwtAuthTestController.Get">
+            <summary>
+            test token
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Net.Core.Api.Controllers.JwtController">
             <summary>
             Authentication controller
