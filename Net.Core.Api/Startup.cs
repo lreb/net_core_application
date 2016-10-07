@@ -22,8 +22,7 @@ namespace Net.Core.Api
     /// </summary>
     public class Startup
     {
-        private const string SecretKey = "needtogetthisfromenvironment";
-        private readonly SymmetricSecurityKey _signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SecretKey));
+        
 
         /// <summary>
         /// 
@@ -53,6 +52,10 @@ namespace Net.Core.Api
         /// </summary>
         public IConfigurationRoot Configuration { get; }
 
+        //secret key
+        private const string SecretKey = "needtogetthisfromenvironment";
+        private readonly SymmetricSecurityKey _signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SecretKey));
+
         // This method gets called by the runtime. Use this method to add services to the container
         /// <summary>
         /// ConfigureServices exists for the explicit reason of adding services to ASP.NET. ASP.NET Core supports Dependency Injection natively, 
@@ -62,28 +65,38 @@ namespace Net.Core.Api
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddApplicationInsightsTelemetry(Configuration);
-            // Add framework services.
             services.AddOptions();
-
-            // include XML comments to swagger
-            var xmlPath = GetXmlCommentsPath();
-
+            // Add framework services.
+            services.AddApplicationInsightsTelemetry(Configuration);
+            
             // Make authentication compulsory across the board (i.e. shut
             // down EVERYTHING unless explicitly opened up).
             services.AddMvc(config => {
                 var policy = new AuthorizationPolicyBuilder()
-                .RequireAuthenticatedUser()
-                .Build();
+                    .RequireAuthenticatedUser()
+                    .Build();
+
                 config.Filters.Add(new AuthorizeFilter(policy));
             }).AddXmlSerializerFormatters(); ;
-
+            // Use policy auth.
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("DisneyUser",
-                                  policy => policy.RequireClaim("DisneyCharacter", "IAmMickey"));
+                options.AddPolicy("DisneyUser", policy => policy.RequireClaim("DisneyCharacter", "IAmMickey"));
             });
 
+            // Get options from app settings
+            var jwtAppSettingOptions = Configuration.GetSection(nameof(JwtIssuerOptions));
+
+            // Configure JwtIssuerOptions
+            services.Configure<JwtIssuerOptions>(options =>
+            {
+                options.Issuer = jwtAppSettingOptions[nameof(JwtIssuerOptions.Issuer)];
+                options.Audience = jwtAppSettingOptions[nameof(JwtIssuerOptions.Audience)];
+                options.SigningCredentials = new SigningCredentials(_signingKey, SecurityAlgorithms.HmacSha256); //HmacSha256
+            });
+
+            // include XML comments to swagger
+            var xmlPath = GetXmlCommentsPath();
             // add swagger service to middleware
             services.AddSwaggerGen();
             // swagger description
@@ -103,17 +116,6 @@ namespace Net.Core.Api
                 //options.DescribeAllEnumsAsStrings();
             });
 
-            // Get options from app settings
-            var jwtAppSettingOptions = Configuration.GetSection(nameof(JwtIssuerOptions));
-
-            // Configure JwtIssuerOptions
-            services.Configure<JwtIssuerOptions>(options =>
-            {
-                options.Issuer = jwtAppSettingOptions[nameof(JwtIssuerOptions.Issuer)];
-                options.Audience = jwtAppSettingOptions[nameof(JwtIssuerOptions.Audience)];
-                options.SigningCredentials = new SigningCredentials(_signingKey, SecurityAlgorithms.HmacSha256);
-            });
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
@@ -125,43 +127,49 @@ namespace Net.Core.Api
         /// <param name="loggerFactory"></param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-
             app.UseApplicationInsightsRequestTelemetry();
-
             app.UseApplicationInsightsExceptionTelemetry();
 
-            app.UseMvc();
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
 
             var jwtAppSettingOptions = Configuration.GetSection(nameof(JwtIssuerOptions));
             var tokenValidationParameters = new TokenValidationParameters
             {
-                ValidateIssuer = true,
-                ValidIssuer = jwtAppSettingOptions[nameof(JwtIssuerOptions.Issuer)],
-
-                ValidateAudience = true,
-                ValidAudience = jwtAppSettingOptions[nameof(JwtIssuerOptions.Audience)],
-
+                // The signing key must match!
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = _signingKey,
 
-                RequireExpirationTime = true,
+                // Validate the token expiry
+                //RequireExpirationTime = true,
                 ValidateLifetime = true,
 
+                // Validate the JWT Issuer (iss) claim
+                ValidateIssuer = true,
+                ValidIssuer = jwtAppSettingOptions[nameof(JwtIssuerOptions.Issuer)],
+
+                // Validate the JWT Audience (aud) claim
+                ValidateAudience = true,
+                ValidAudience = jwtAppSettingOptions[nameof(JwtIssuerOptions.Audience)],
+
+                // If you want to allow a certain amount of clock drift, set that here:
                 ClockSkew = TimeSpan.Zero
             };
-
-            app.UseJwtBearerAuthentication(new JwtBearerOptions
+            
+            app.UseJwtBearerAuthentication(new JwtBearerOptions()
             {
+                
                 AutomaticAuthenticate = true,
                 AutomaticChallenge = true,
-                TokenValidationParameters = tokenValidationParameters
+                TokenValidationParameters = tokenValidationParameters,
+                
             });
 
             // use swagger framework
             app.UseSwagger();
             app.UseSwaggerUi();
+
+            app.UseMvc();
         }
 
         /// <summary>

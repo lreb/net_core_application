@@ -4,12 +4,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Net.Core.Api.Controllers
 {
     /// <summary>
     /// 
     /// </summary>
+    /// 
+    ///[Authorize]
+    ///[AllowAnonymous]
+    [Authorize]
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {

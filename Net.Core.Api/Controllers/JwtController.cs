@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Net.Core.Api.Options;
@@ -12,9 +10,7 @@ using Microsoft.Extensions.Options;
 using Net.Core.Api.Models;
 using System.Security.Claims;
 using System.Security.Principal;
-
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace Net.Core.Api.Controllers
 {
     /// <summary>
@@ -58,21 +54,20 @@ namespace Net.Core.Api.Controllers
             if (identity == null)
             {
                 _logger.LogInformation($"Invalid username ({applicationUser.UserName}) or password ({applicationUser.Password})");
-                return BadRequest("Invalid credentials");
+                return BadRequest("Invalid credentials!");
             }
 
             var claims = new[]
             {
-        new Claim(JwtRegisteredClaimNames.Sub, applicationUser.UserName),
-        new Claim(JwtRegisteredClaimNames.Jti, await _jwtOptions.JtiGenerator()),
-        new Claim(JwtRegisteredClaimNames.Iat,
-                  ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(),
-                  ClaimValueTypes.Integer64),
-        identity.FindFirst("DisneyCharacter")
-      };
+                new Claim(JwtRegisteredClaimNames.Sub, applicationUser.UserName),
+                new Claim(JwtRegisteredClaimNames.Jti, await _jwtOptions.JtiGenerator()),
+                new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(), ClaimValueTypes.Integer64),
+                identity.FindFirst("DisneyCharacter")
+            };
 
             // Create the JWT security token and encode it.
             var jwt = new JwtSecurityToken(
+                
                 issuer: _jwtOptions.Issuer,
                 audience: _jwtOptions.Audience,
                 claims: claims,
@@ -89,6 +84,7 @@ namespace Net.Core.Api.Controllers
                 expires_in = (int)_jwtOptions.ValidFor.TotalSeconds
             };
 
+            
             var json = JsonConvert.SerializeObject(response, _serializerSettings);
             return new OkObjectResult(json);
         }
