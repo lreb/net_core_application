@@ -4,12 +4,12 @@
 -nowarn:CS1701
 -nowarn:CS1702
 -nowarn:CS1705
--doc:"C:\Users\Luis Espinoza\Documents\Visual Studio 2015\Projects\Net.Core\Net.Core.Api\bin\Debug\netcoreapp1.0\Net.Core.Api.xml"
+-doc:"C:\Users\Luis Espinoza\Documents\Visual Studio 2015\Projects\Net.Core\Net.Core.Api\bin\Net.Core.Api\bin\Debug\netcoreapp1.0\Net.Core.Api.xml"
 -debug:full
 -nostdlib
 -nologo
-"C:\Users\Luis Espinoza\Documents\Visual Studio 2015\Projects\Net.Core\Net.Core.Api\obj\Debug\netcoreapp1.0\dotnet-compile.assemblyinfo.cs"
--out:"C:\Users\Luis Espinoza\Documents\Visual Studio 2015\Projects\Net.Core\Net.Core.Api\bin\Debug\netcoreapp1.0\Net.Core.Api.dll"
+"C:\Users\Luis Espinoza\Documents\Visual Studio 2015\Projects\Net.Core\Net.Core.Api\bin\Net.Core.Api\obj\Debug\netcoreapp1.0\dotnet-compile.assemblyinfo.cs"
+-out:"C:\Users\Luis Espinoza\Documents\Visual Studio 2015\Projects\Net.Core\Net.Core.Api\bin\Net.Core.Api\bin\Debug\netcoreapp1.0\Net.Core.Api.dll"
 -r:"C:\Users\Luis Espinoza\.nuget\packages\Microsoft.ApplicationInsights\2.1.0\lib\dotnet5.4\Microsoft.ApplicationInsights.dll"
 -r:"C:\Users\Luis Espinoza\.nuget\packages\Microsoft.ApplicationInsights.AspNetCore\1.0.0\lib\netstandard1.6\Microsoft.ApplicationInsights.AspNetCore.dll"
 -r:"C:\Users\Luis Espinoza\.nuget\packages\Microsoft.AspNetCore.Antiforgery\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.Antiforgery.dll"
@@ -218,7 +218,7 @@
 -r:"C:\Users\Luis Espinoza\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll"
 -r:"C:\Users\Luis Espinoza\.nuget\packages\System.Xml.XmlSerializer\4.0.11\ref\netstandard1.3\System.Xml.XmlSerializer.dll"
 -r:"C:\Users\Luis Espinoza\.nuget\packages\System.Xml.XPath\4.0.1\ref\netstandard1.3\System.Xml.XPath.dll"
--resource:"C:\Users\Luis Espinoza\Documents\Visual Studio 2015\Projects\Net.Core\Net.Core.Api\obj\Debug\netcoreapp1.0\Net.Core.Apidotnet-compile.deps.json",Net.Core.Api.deps.json
+-resource:"C:\Users\Luis Espinoza\Documents\Visual Studio 2015\Projects\Net.Core\Net.Core.Api\bin\Net.Core.Api\obj\Debug\netcoreapp1.0\Net.Core.Apidotnet-compile.deps.json",Net.Core.Api.deps.json
 "C:\Users\Luis Espinoza\Documents\Visual Studio 2015\Projects\Net.Core\Net.Core.Api\Program.cs"
 "C:\Users\Luis Espinoza\Documents\Visual Studio 2015\Projects\Net.Core\Net.Core.Api\Startup.cs"
 "C:\Users\Luis Espinoza\Documents\Visual Studio 2015\Projects\Net.Core\Net.Core.Api\Controllers\JwtAuthTestController.cs"

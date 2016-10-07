@@ -14,6 +14,8 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using System.Text;
 using Net.Core.Api.Options;
 using Microsoft.IdentityModel.Tokens;
+using Net.Core.Api.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Net.Core.Api
 {
@@ -68,7 +70,10 @@ namespace Net.Core.Api
             services.AddOptions();
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
-            
+
+            var connection = @"Server=(localdb)\mssqllocaldb;Database=ApiDataBase;Trusted_Connection=True;";
+            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
+
             // Make authentication compulsory across the board (i.e. shut
             // down EVERYTHING unless explicitly opened up).
             services.AddMvc(config => {
